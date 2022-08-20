@@ -4,14 +4,14 @@ using System.Diagnostics;
 namespace Sequences
 {
   [DebuggerDisplay("{Value}")]
-  public class SequenceNode
+  public class SequenceNode : ISequenceNode
   {
-    private readonly List<SequenceNode> children = new();
+    private readonly List<ISequenceNode> children = new();
 
     public readonly string Value;
     public virtual bool Success => Position == Value.Length - 1;
     public virtual bool Verified { get; protected set; }
-    public ReadOnlyCollection<SequenceNode> Next => new(children);
+    public ReadOnlyCollection<ISequenceNode> Next => new(children);
 
     public int Position { get; set; }
 
@@ -24,7 +24,7 @@ namespace Sequences
       Reset();
     }
 
-    public virtual void AddNext(SequenceNode next)
+    public virtual void AddNext(ISequenceNode next)
     {
       if (children.Contains(next))
         throw new ArgumentException($"Already exists after '{Value}'", nameof(next));

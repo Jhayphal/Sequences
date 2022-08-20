@@ -2,12 +2,12 @@
 {
   public class SequenceContext
   {
-    public readonly SequenceNode Head;
+    public readonly ISequenceNode Head;
     public readonly string Value;
 
     public int Position { get; set; } = -1;
 
-    public SequenceContext(SequenceNode head, string value)
+    public SequenceContext(ISequenceNode head, string value)
     {
       Head = head;
       Value = value;
